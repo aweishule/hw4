@@ -1,0 +1,26 @@
+[I,map]=imread('D:\study\dip\3\第4-次作业\test4 copy.bmp');
+subplot(1,2,1);
+imshow(I,map);
+title('original');
+n1 = 1;
+F1=zeros(2*n1+1,2*n1+1);
+sigma = 1.5;         
+sum=0;
+for x=1:2*n1+1
+    for y=1:2*n1+1
+            r=(x-2*n1)*(x-2*n1)+(y-2*n1)*(y-2*n1);
+            F1(x,y)=exp(-r/(2*sigma*sigma));
+            sum=sum+ F1(x,y);
+    end
+end
+
+for x=1:2*n1+1
+    for y=1:2*n1+1
+           F1(x,y)=F1(x,y)/sum;
+    end
+end
+img=double(I);
+img2=conv2(img,F1,'same');
+subplot(1,2,2);
+imshow(img2,map);
+title('gauss3x3');

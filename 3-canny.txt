@@ -1,0 +1,8 @@
+[I,map]=imread('D:\study\dip\3\第4-次作业\test4 copy.bmp');
+G=edge(I,'canny',[],1);
+subplot(1,2,1);
+imshow(I);
+title('original');
+subplot(1,2,2);
+imshow(G)
+title('canny');

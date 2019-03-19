@@ -1,0 +1,9 @@
+[I,map]=imread('D:\study\dip\3\第4-次作业\test3_corrupt.pgm');
+H=fspecial('laplacian',0.2);
+G=imfilter(I,H,'replicate');
+subplot(2,2,1);
+imshow(I);
+title('original');
+subplot(2,2,2);
+imshow(G);
+title('laplacian');

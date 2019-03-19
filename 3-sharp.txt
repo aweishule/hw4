@@ -1,0 +1,27 @@
+clear all;
+[I,map]=imread('D:\study\dip\3\第4-次作业\test3_corrupt.pgm');
+subplot(2,2,1);
+imshow(I);
+title('original');
+sigma=1.5;
+H=fspecial('gaussian',[3 3],sigma);
+img2=imfilter(I,H,'replicate');
+img=double(I);
+
+subplot(2,2,2);
+imshow(img2);
+title('gauss3x3');
+
+[x,y]=size(I);
+img3=zeros(x,y);
+for i=1:x
+    for j=1:y
+        if (img2(i,j)-img(i,j))>=0
+        img3(i,j)=img2(i,j)-img(i,j);
+        else img3(i,j)=img(i,j)-img2(i,j);
+        end
+    end
+end
+subplot(2,2,3);
+imshow(uint8(img3),[])
+title('高频');
